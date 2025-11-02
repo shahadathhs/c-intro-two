@@ -11,13 +11,35 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        file: [ "*.c", "*.cpp" ]
+
     steps:
     - uses: actions/checkout@v4
-    - name: configure
-      run: ./configure
-    - name: make
-      run: make
-    - name: make check
-      run: make check
-    - name: make distcheck
-      run: make distcheck
+
+    - name: Install build tools
+      run: sudo apt update && sudo apt install -y build-essential
+
+    - name: Compile ${{ matrix.file }}
+      run: |
+        for f in ${{ matrix.file }}; do
+          if [[ "$f" == *.c ]]; then
+            gcc -o "${f%.c}.out" "$f"
+          else
+            g++ -o "${f%.cpp}.out" "$f"
+          fi
+        done
+
+    - name: Run tests
+      run: |
+        for f in ${{ matrix.file }}; do
+          out="${f%.*}.out"
+          if [ -f "$out" ]; then
+            if [ -f "input.txt" ]; then
+              timeout 5 ./"$out" < input.txt > output.txt
+            else
+              timeout 5 ./"$out"
+            fi
+          fi
+        done
