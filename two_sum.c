@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<stdbool.h>
 
 int main(void)
 {
@@ -18,6 +19,7 @@ int main(void)
     scanf("%d", &target);
 
     printf("%d %d \n", N, target);
+    bool isTarget = false;
 
     for (int i = 0; i < N; i++)
     {
@@ -26,12 +28,20 @@ int main(void)
             if (arr[i] + arr[j] == target)
             {
                 printf("%d %d \n", i, j);
+                isTarget = true;
             }
         }
         
     }
-    
-    
 
+    if (isTarget)
+    {
+        printf("YES");
+    }
+    else
+    {
+        printf("NO");
+    }
+    
     return 0;
 }
