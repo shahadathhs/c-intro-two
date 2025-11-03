@@ -26,5 +26,28 @@ int main(void)
     
     }
 
+
+    printf("\n\nNew Pattern \n\n");
+    int star2 = 1;
+
+    for (int i = N; i > 0; i--)
+    {
+
+        for (int j = i -1; j > 0; j--)
+        {
+            printf(" ");
+        }
+
+        for (int j = 0; j < star2; j++)
+        {
+            printf("*");
+        }
+
+        star2++;
+
+        printf("\n");
+    
+    }
+
     return 0;
 }
