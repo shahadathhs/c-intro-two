@@ -3,51 +3,24 @@
 int main(void)
 {
     int N;
-    int star = 1;
-
-    scanf("%d", &N);
-
-    for (int i = N; i > 0; i--)
-    {
-
-        for (int j = i -1; j > 0; j--)
-        {
-            printf(" ");
-        }
-
-        for (int j = 0; j < star; j++)
-        {
-           if(i % 2 == 0)
-           {
-              printf("-");
-           }
-           else
-           {
-             printf("#");
-           }
-        }
-
-        star+=2;
-
-        printf("\n");
+    int sign = 1;
     
-    }
+    scanf("%d", &N);
+    
+    int loopL = N + N -1;
+    int space = N -1;
+    int dec = 0;
 
-    star-=2;
-
-    int space = 1;
-
-    for (int i = N - 1; i >= 0; i--)
+    for (int i = loopL; i > 0; i--)
     {
-        star-=2;
 
-        for (int j = 1; j <= space; j++)
+        for (int k = 0; k < space; k++)
         {
             printf(" ");
         }
-        space++;
-
-        for (int j = 0; j < star; j++)
+        
+        
+        for (int j = 0; j < sign; j++)
         {
            if(i % 2 == 0)
            {
@@ -57,6 +30,22 @@ int main(void)
            {
              printf("#");
            }
+        }
+
+        if(i == N)
+        {
+            dec = 1;
+        }
+
+        if(dec != 1)
+        {
+            sign+=2;
+            space--;
+        }
+        else
+        {
+            sign-=2;
+            space++;
         }
 
         printf("\n");
