@@ -14,6 +14,20 @@ int	recursion(int value, int N)
     return 0;
 }
 
+int	recursionReverse(int value)
+{
+    if(value < 1)
+    {
+        return 0;
+    }
+
+    printf("%d\n", value);
+
+    recursionReverse(value - 1);
+
+    return 0;
+}
+
 
 int main(void)
 {
@@ -21,6 +35,8 @@ int main(void)
     scanf("%d", &N);
 
     recursion(1, N);
+
+    recursionReverse(N);
 
     return 0;
 }
