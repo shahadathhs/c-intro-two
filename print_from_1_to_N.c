@@ -10,6 +10,7 @@ int	recursion(int value, int N)
     printf("%d\n", value);
 
     recursion(value + 1, N);
+    printf("%d\n", value);
 
     return 0;
 }
